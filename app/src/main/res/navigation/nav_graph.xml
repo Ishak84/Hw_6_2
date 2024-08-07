@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/charactersFragment"
-        android:name="com.geeks.hw_6_2.ui.fragments.CharactersFragment"
+        android:name="com.geeks.hw_6_2.ui.fragments.cartoon.CharactersFragment"
         android:label="fragment_characters"
         tools:layout="@layout/fragment_characters">
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/characterDetailFragment"
-        android:name="com.geeks.hw_6_2.ui.fragments.CharacterDetailFragment"
+        android:name="com.geeks.hw_6_2.ui.fragments.detail.CharacterDetailFragment"
         android:label="fragment_character_detail"
         tools:layout="@layout/fragment_character_detail">
         <argument

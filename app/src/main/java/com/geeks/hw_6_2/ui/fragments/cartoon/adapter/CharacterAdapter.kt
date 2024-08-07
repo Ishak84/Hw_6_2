@@ -1,4 +1,4 @@
-package com.geeks.hw_6_2.ui.fragments
+package com.geeks.hw_6_2.ui.fragments.cartoon.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.geeks.hw_6_2.data.models.Character
 import coil.load
-import com.geeks.hw_6_2.OnClick
+import com.geeks.hw_6_2.utils.OnClick
 import com.geeks.hw_6_2.R
 import com.geeks.hw_6_2.databinding.ItemCharacterBinding
 

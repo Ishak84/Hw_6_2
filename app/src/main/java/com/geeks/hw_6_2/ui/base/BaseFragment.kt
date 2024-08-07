@@ -1,16 +1,14 @@
-package com.geeks.hw_6_2.ui.fragments
+package com.geeks.hw_6_2.ui.base
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.viewbinding.ViewBinding
-import com.geeks.hw_6_2.R
 import com.geeks.hw_6_2.utils.Resource
 import com.geeks.hw_6_2.utils.showToast
-import dagger.hilt.android.AndroidEntryPoint
 
 typealias Inflate<T> = (LayoutInflater, ViewGroup?, Boolean) -> T
 

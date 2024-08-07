@@ -1,4 +1,4 @@
-package com.geeks.hw_6_2.ui.fragments
+package com.geeks.hw_6_2.ui.fragments.detail
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
