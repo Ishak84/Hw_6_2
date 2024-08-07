@@ -7,12 +7,9 @@ import androidx.lifecycle.viewModelScope
 import com.geeks.hw_6_2.data.repository.Repository
 import com.geeks.hw_6_2.utils.Resource
 import com.geeks.hw_6_2.data.models.Character
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-@HiltViewModel
-class CharacterViewModel @Inject constructor(
+class CharacterViewModel (
     private val repository: Repository
 ) : ViewModel() {
 

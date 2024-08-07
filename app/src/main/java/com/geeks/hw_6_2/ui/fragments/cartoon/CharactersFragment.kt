@@ -7,17 +7,17 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.geeks.hw_6_2.utils.OnClick
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import com.geeks.hw_6_2.databinding.FragmentCharactersBinding
 import com.geeks.hw_6_2.data.models.Character
 import com.geeks.hw_6_2.ui.base.BaseFragment
 import com.geeks.hw_6_2.ui.fragments.cartoon.adapter.CharacterAdapter
-import dagger.hilt.android.AndroidEntryPoint
 
-@AndroidEntryPoint
+
 class CharactersFragment : BaseFragment<FragmentCharactersBinding>(FragmentCharactersBinding::inflate),
     OnClick {
 
-    private val viewModel: CharacterViewModel by viewModels()
+    private val viewModel: CharacterViewModel by viewModel()
     private val adapter by lazy {
         CharacterAdapter(this)
     }

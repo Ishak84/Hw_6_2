@@ -1,8 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
-    id ("kotlin-kapt")
-    id("com.google.dagger.hilt.android")
+//    id ("kotlin-kapt")
+//    id("com.google.dagger.hilt.android")
     id("androidx.navigation.safeargs.kotlin")
 }
 
@@ -53,8 +53,8 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
 
     //Dagger-Hilt
-    implementation(libs.hilt.android)
-    kapt(libs.hilt.android.compiler)
+//    implementation(libs.hilt.android)
+//    kapt(libs.hilt.android.compiler)
 
     //retrofit
     implementation(libs.retrofit)
@@ -75,4 +75,18 @@ dependencies {
 
     //Coil
     implementation (libs.coil)
+
+    // Fragment KTX
+    implementation(libs.androidx.fragment.ktx)
+
+    // Koin
+    implementation(libs.koin.android)
+
+    //ViewModel
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.androidx.lifecycle.livedata.ktx)
+
+    //  Coroutines
+    implementation(libs.kotlinx.coroutines.android)
+    implementation(kotlin("script-runtime"))
 }

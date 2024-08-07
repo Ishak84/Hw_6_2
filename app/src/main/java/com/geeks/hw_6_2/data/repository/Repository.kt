@@ -10,9 +10,8 @@ import com.geeks.hw_6_2.utils.Resource
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import javax.inject.Inject
 
-class Repository  @Inject constructor(
+class Repository  (
     private val api: ApiService
 ) {
 

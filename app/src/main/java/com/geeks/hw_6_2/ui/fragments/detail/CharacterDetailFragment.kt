@@ -3,17 +3,16 @@ package com.geeks.hw_6_2.ui.fragments.detail
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import androidx.navigation.fragment.navArgs
 import coil.load
 import com.geeks.hw_6_2.databinding.FragmentCharacterDetailBinding
 import com.geeks.hw_6_2.ui.base.BaseFragment
-import dagger.hilt.android.AndroidEntryPoint
 
-@AndroidEntryPoint
 class CharacterDetailFragment :
     BaseFragment<FragmentCharacterDetailBinding>(FragmentCharacterDetailBinding::inflate) {
     //private lateinit var viewModel: DetalViewModel
-    private val viewModel: DetailViewModel by viewModels()
+    private val viewModel: DetailViewModel by viewModel()
     private val args: CharacterDetailFragmentArgs by navArgs()
     private lateinit var binding2: FragmentCharacterDetailBinding
 
