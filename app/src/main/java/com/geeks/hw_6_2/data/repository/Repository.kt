@@ -1,5 +1,6 @@
 package com.geeks.hw_6_2.data.repository
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.geeks.hw_6_2.data.api_service.ApiService
@@ -34,4 +35,22 @@ class Repository  @Inject constructor(
         })
         return data
     }
+    fun getCharacterDetails(id: Int): LiveData<Resource<Character>> {
+        val data = MutableLiveData<Resource<Character>>()
+        data.postValue(Resource.Loading())
+        api.getCharacterDetails(id).enqueue(object : Callback<Character> {
+            override fun onResponse(call: Call<Character>, response: Response<Character>) {
+                Log.e("ololo", "onResponse: ${response.body()}", )
+                response.body().let {
+                    data.postValue(Resource.Success(response.body()!!))
+                }
+            }
+
+            override fun onFailure(p0: Call<Character>, p1: Throwable) {
+                Log.e("ololo", "onFailure: $p1", )
+            }
+        })
+        return data
+    }
+
 }

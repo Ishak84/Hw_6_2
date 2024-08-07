@@ -7,11 +7,12 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.geeks.hw_6_2.data.models.Character
 import coil.load
+import com.geeks.hw_6_2.OnClick
 import com.geeks.hw_6_2.R
 import com.geeks.hw_6_2.databinding.ItemCharacterBinding
 
 
-class CharacterAdapter() :
+class CharacterAdapter(private val onClick: OnClick) :
     ListAdapter<Character, CharacterAdapter.RickAndMortyViewHolder>(diffUtil) {
     inner class RickAndMortyViewHolder(private val binding: ItemCharacterBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -51,6 +52,9 @@ class CharacterAdapter() :
             if (it != null) {
                 holder.onBind(it)
             }
+        }
+        holder.itemView.setOnClickListener {
+            onClick.onClick(getItem(position))
         }
     }
 

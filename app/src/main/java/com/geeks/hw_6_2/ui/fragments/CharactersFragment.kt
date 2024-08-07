@@ -6,61 +6,47 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isVisible
+import androidx.fragment.app.viewModels
+
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.geeks.hw_6_2.R
+import com.geeks.hw_6_2.OnClick
 import com.geeks.hw_6_2.databinding.FragmentCharactersBinding
 import com.geeks.hw_6_2.utils.Resource
+import com.geeks.hw_6_2.utils.gone
+import com.geeks.hw_6_2.data.models.Character
+import com.geeks.hw_6_2.utils.visible
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class CharactersFragment : Fragment() {
+class CharactersFragment : BaseFragment<FragmentCharactersBinding>(FragmentCharactersBinding::inflate), OnClick {
 
-    private lateinit var binding: FragmentCharactersBinding
-    private val viewModel by lazy {
-        ViewModelProvider(this)[CharacterViewModel::class.java]
-    }
-    private var charactersAdapter: CharacterAdapter? = null
-
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = FragmentCharactersBinding.inflate(inflater, container, false)
-        return binding.root
+    private val viewModel: CharacterViewModel by viewModels()
+    private val adapter by lazy {
+        CharacterAdapter(this)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        setupRecyclerView()
-        setupObserve()
+    override fun setupViews(view: View) {
+        binding.rvCharacters.layoutManager = LinearLayoutManager(context)
+        binding.rvCharacters.adapter = adapter
     }
 
-    private fun setupObserve() {
-        viewModel.getCharacters().observe(viewLifecycleOwner) { res ->
-            when (res) {
-                is Resource.Loading -> {
-                    binding.pbCharacter.visibility = View.VISIBLE
-                }
-                is Resource.Success -> {
-                    binding.pbCharacter.visibility = View.GONE
-                    charactersAdapter?.submitList(res.data)
-                }
-                is Resource.Error -> {
-                    binding.pbCharacter.visibility = View.GONE
-                    Toast.makeText(requireContext(), res.message, Toast.LENGTH_SHORT).show()
-                }
+    override fun observeViewModel() {
+        viewModel.characters.handleResource(
+            isLoading = { visibility ->
+                binding.pbCharacter.isVisible = visibility
+            },
+            onSuccess = { data ->
+                adapter.submitList(data)
             }
-        }
+        )
     }
 
-    private fun setupRecyclerView() {
-        charactersAdapter = CharacterAdapter()
-        binding.rvCharacters.apply {
-            setHasFixedSize(true)
-            adapter = charactersAdapter
-            layoutManager = LinearLayoutManager(requireContext())
-        }
+    override fun onClick(position: Character) {
+        val action =
+            CharactersFragmentDirections.actionCharactersFragmentToCharacterDetailFragment(position.id)
+        findNavController().navigate(action)
     }
 }
